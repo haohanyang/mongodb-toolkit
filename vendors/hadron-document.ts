@@ -1,13 +1,10 @@
 // packages/hadron-document/src/utils.ts
 
-import { EJSON } from "bson";
+import { EJSON } from 'bson';
 
 const maxFourYearDate = new Date('9999-12-31T23:59:59.999Z').valueOf();
 
-export function objectToIdiomaticEJSON(
-  value: any,
-  options: any = {}
-): string {
+export function objectToIdiomaticEJSON(value: any, options: any = {}): string {
   const serialized = EJSON.serialize(value, {
     relaxed: false,
   });
@@ -17,7 +14,7 @@ export function objectToIdiomaticEJSON(
   return JSON.stringify(
     serialized,
     null,
-    'indent' in options ? options.indent : 2
+    'indent' in options ? options.indent : 2,
   );
 }
 
