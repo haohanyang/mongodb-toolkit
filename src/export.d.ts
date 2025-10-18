@@ -1,8 +1,11 @@
-import { type AggregationCursor, type FindCursor } from 'mongodb';
-import { type Writable } from 'stream';
+import { AggregationCursor, FindCursor } from 'mongodb';
+import { Writable } from 'stream';
 
-type Delimiter = ',' | '\t' | ';' | ' ';
-type Linebreak = '\r\n' | '\n';
+declare const supportedDelimiters: readonly [',', '\t', ';', ' '];
+declare const supportedLinebreaks: readonly ['\r\n', '\n'];
+
+type Delimiter = (typeof supportedDelimiters)[number];
+type Linebreak = (typeof supportedLinebreaks)[number];
 
 type CSVExportPhase = 'DOWNLOAD' | 'WRITE';
 type ProgressCallback = (index: number, phase: CSVExportPhase) => void;
