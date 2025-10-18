@@ -46,6 +46,33 @@ exportCSV(cursor, createWriteStream('output.csv'), {
   });
 ```
 
+### Importing CSV Data
+
+```javascript
+const path = require('path');
+const { createReadStream } = require('fs');
+const { MongoClient } = require('mongodb');
+const { exportCSV } = require('mongodb-toolkit');
+
+const mongoClient = new MongoClient('mongodb://localhost:27017');
+
+const coll = mongoClient.db('mydb').collection('mycollection');
+
+importCSV(coll, createReadStream('example.csv'), {
+  fields: { id: 'int', name: 'string' },
+})
+  .then((result) => {
+    console.log(`Import result`, result);
+  })
+  .catch((err) => {
+    console.error(err);
+  })
+  .finally(() => {
+    mongoClient.close();
+    process.exit(0);
+  });
+```
+
 ### Analyzing Schema
 
 ```javascript
