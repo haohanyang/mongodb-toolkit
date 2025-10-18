@@ -21,7 +21,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: bash bootstrap.sh
       - run: npm ci
-      - run: npm run build-lib
+      - run: npm run build-lib:production
       - run: npm publish --tag ${{ github.event.inputs.tag }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

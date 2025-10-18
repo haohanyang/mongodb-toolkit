@@ -1,5 +1,5 @@
 const { analyzeSchema } = require('../src');
-const { aggregationCursor } = require('./cursors');
+const { aggregationCursor, disconnect } = require('./cursors');
 
 analyzeSchema(aggregationCursor)
   .then((schema) => schema.getMongoDBJsonSchema())
@@ -10,5 +10,6 @@ analyzeSchema(aggregationCursor)
     console.error(err);
   })
   .finally(() => {
+    disconnect();
     process.exit(0);
   });

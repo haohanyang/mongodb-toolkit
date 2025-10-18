@@ -2,3 +2,4 @@ node_modules/
 lib/
 compass/
 .env
+*.tgz

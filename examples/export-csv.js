@@ -1,6 +1,6 @@
 const { createWriteStream } = require('fs');
 const { exportCSV } = require('../src');
-const { findCursor, aggregationCursor } = require('./cursors');
+const { findCursor, aggregationCursor, disconnect } = require('./cursors');
 
 Promise.all([
   exportCSV(findCursor, createWriteStream('find-cursor.csv'), {
@@ -16,5 +16,6 @@ Promise.all([
     console.error(err);
   })
   .finally(() => {
+    disconnect();
     process.exit(0);
   });

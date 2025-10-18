@@ -4,6 +4,10 @@ require('dotenv').config();
 
 const mongoClient = new MongoClient(process.env.MONGO_URI);
 
+function disconnect() {
+  mongoClient.close();
+}
+
 const aggregationCursor = mongoClient
   .db('sample_airbnb')
   .collection('listingsAndReviews')
@@ -17,4 +21,5 @@ const findCursor = mongoClient
 module.exports = {
   findCursor,
   aggregationCursor,
+  disconnect,
 };

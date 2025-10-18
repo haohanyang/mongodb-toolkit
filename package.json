@@ -1,6 +1,6 @@
 {
   "name": "mongodb-toolkit",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "description": "MongoDB Toolkit",
   "main": "src/index.js",
   "types": "src/index.d.ts",
@@ -14,6 +14,7 @@
   },
   "scripts": {
     "build-lib": "rollup -c",
+    "build-lib:production": "NODE_ENV=production rollup -c",
     "format": "prettier --write \"*.js\" \"src/**/*.js\" \"vendors/**/*.ts\" \"src/**/*.ts\""
   },
   "author": "Haohan Yang",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-typescript": "^12.1.4",
+    "@types/node": "^24.8.1",
     "dotenv": "^17.2.3",
     "prettier": "^3.6.2",
     "rollup": "^4.52.4",
@@ -33,7 +35,7 @@
   "dependencies": {
     "bson": "^6.10.4",
     "lodash": "^4.17.21",
-    "stream-json": "^1.7.5",
-    "mongodb-schema": "^12.6.3"
+    "mongodb-schema": "^12.6.3",
+    "stream-json": "^1.7.5"
   }
 }

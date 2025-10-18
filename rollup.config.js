@@ -2,6 +2,8 @@ const path = require('path');
 const typescript = require('@rollup/plugin-typescript');
 const alias = require('@rollup/plugin-alias');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 /** @type {import('rollup').RollupOptions} */
 const options = {
   input: {
@@ -44,7 +46,10 @@ const options = {
         },
         {
           find: 'debug',
-          replacement: path.resolve(__dirname, 'vendors/debug'),
+          replacement: path.resolve(
+            __dirname,
+            isProduction ? 'vendors/debug' : 'vendors/debug-dev',
+          ),
         },
         {
           find: 'mongodb-ns',
