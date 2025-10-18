@@ -1,2 +1,3 @@
-export * from './export';
-export * from './schema-analysis';
+export { exportCSV, exportJSON } from './export';
+export { importCSV, importCSVFromFile } from './import';
+export { analyzeSchema } from './schema-analysis';

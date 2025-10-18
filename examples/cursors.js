@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-require('dotenv').config();
+process.loadEnvFile();
 
 const mongoClient = new MongoClient(process.env.MONGO_URI);
 

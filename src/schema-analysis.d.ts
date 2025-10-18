@@ -1,5 +1,5 @@
-import { type AggregationCursor } from 'mongodb';
-import { type SchemaAccessor } from 'mongodb-schema';
+import { AggregationCursor } from 'mongodb';
+import { SchemaAccessor } from 'mongodb-schema';
 
 type AnalyzeSchemaOptions = {
   abortSignal?: AbortSignal;

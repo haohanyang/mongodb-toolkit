@@ -13,6 +13,14 @@ const options = {
       './compass/packages/compass-import-export/src/export/export-json.ts',
     'schema-analysis':
       './compass/packages/compass-schema/src/modules/schema-analysis.ts',
+    'import-csv':
+      './compass/packages/compass-import-export/src/import/import-csv.ts',
+    'import-json':
+      './compass/packages/compass-import-export/src/import/import-json.ts',
+    'analyze-csv-fields':
+      './compass/packages/compass-import-export/src/import/analyze-csv-fields.ts',
+    'guess-filetype':
+      './compass/packages/compass-import-export/src/import/guess-filetype.ts',
   },
   output: {
     dir: path.resolve(__dirname, 'lib'),
@@ -23,19 +31,25 @@ const options = {
     ...require('module').builtinModules,
     'bson',
     'lodash',
-    'stream-json/Parser',
-    'stream-json/streamers/StreamValues',
+    'stream-json',
+    new RegExp('stream-json/.*'),
     'mongodb/lib/utils',
     'mongodb-schema',
+    'papaparse',
+    'strip-bom-stream',
   ],
   plugins: [
     typescript({
+      compilerOptions: {
+        target: 'ES2015',
+      },
       exclude: [
         'node_modules',
         '**/*.test.ts',
         '**/*.spec.ts',
         'test',
         '**/*.tsx',
+        'scripts',
       ],
     }),
     alias({
