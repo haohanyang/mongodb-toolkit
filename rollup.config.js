@@ -43,12 +43,12 @@ const options = {
       compilerOptions: {
         target: 'ES2015',
       },
+      include: ['./compass/packages/**/*.ts', './vendors/*.ts'],
       exclude: [
         'node_modules',
         '**/*.test.ts',
         '**/*.spec.ts',
         'test',
-        '**/*.tsx',
         'scripts',
       ],
     }),
@@ -72,6 +72,10 @@ const options = {
         {
           find: 'hadron-document',
           replacement: path.resolve(__dirname, 'vendors/hadron-document'),
+        },
+        {
+          find: 'bson',
+          replacement: path.resolve(__dirname, 'vendors/bson'),
         },
       ],
     }),
