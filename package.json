@@ -1,14 +1,14 @@
 {
   "name": "mongodb-toolkit",
   "version": "0.1.0",
-  "description": "",
+  "description": "MongoDB Toolkit",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
     "compile": "rollup -c",
     "format": "prettier --write \"*.js\" \"src/**/*.js\" \"src/**/*.ts\""
   },
-  "author": "",
+  "author": "Haohan Yang",
   "license": "SSPL",
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.1",
