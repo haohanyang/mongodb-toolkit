@@ -18,79 +18,90 @@ npm install mongodb-toolkit
 
 ## Usage
 
-### Exporting Data to CSV
+### Export Data to CSV
 
-```javascript
-const { exportCSV, importCSV } = require('mongodb-toolkit');
+```ts
+import { exportCSV } from 'mongodb-toolkit';
 
-const mongoClient = new MongoClient('mongodb://localhost:27017');
+const mongoClient = new MongoClient(process.env['MONGO_URI']!);
 
 const cursor = mongoClient
-  .db('mydb')
-  .collection('mycollection')
-  .aggregate([{ $limit: 10 }]);
+    .db('sample_airbnb')
+    .collection('listingsAndReviews')
+    .aggregate([{ $limit: 10 }, { $project: { listing_url: 1 } }]);
 
 exportCSV(cursor, fs.createWriteStream('output.csv'), {
-  delimiter: ';',
-  progressCallback: (idx, phase) => {
-    console.log(phase, idx);
-  },
+    delimiter: ';',
+    progressCallback: (idx, phase) => {
+        console.log(phase, idx);
+    },
 })
-  .catch((err) => {
-    console.error(err);
-  })
-  .finally(() => {
-    mongoClient.close();
-    process.exit(0);
-  });
+    .then(result => {
+        console.log('Export result', result);
+    })
+    .catch((err) => {
+        console.error(err);
+    })
+    .finally(() => {
+        mongoClient.close();
+        process.exit(0);
+    });
 ```
 
-### Importing CSV Data
+### Import CSV File
 
-```javascript
-const { importCSV } = require('mongodb-toolkit');
+```ts
+import { importCSV } from 'mongodb-toolkit';
 
-const mongoClient = new MongoClient('mongodb://localhost:27017');
+const mongoClient = new MongoClient(process.env['MONGO_URI']!);
 
 const coll = mongoClient.db('mydb').collection('mycollection');
 
-importCSV(coll, fs.createReadStream('example.csv'), {
-  fields: { id: 'int', name: 'string' },
+/* import.csv content:
+id,name
+1,John
+2,Jane
+3,Doe
+*/
+
+importCSV(coll, fs.createReadStream('./import.csv'), {
+    fields: { id: 'int', name: 'string' },
+    delimiter: ',',
 })
-  .then((result) => {
-    console.log(`Import result`, result);
-  })
-  .catch((err) => {
-    console.error(err);
-  })
-  .finally(() => {
-    mongoClient.close();
-    process.exit(0);
-  });
+    .then((result) => {
+        console.log('Import Result:', result);
+    })
+    .catch((err) => {
+        console.error(err);
+    })
+    .finally(() => {
+        mongoClient.close();
+        process.exit(0);
+    });
 ```
 
 ### Analyzing Schema
 
-```javascript
-const { analyzeSchema } = require('mongodb-toolkit');
+```ts
+import { analyzeSchema } from 'mongodb-toolkit';
 
-const mongoClient = new MongoClient('mongodb://localhost:27017');
+const mongoClient = new MongoClient(process.env['MONGO_URI']!);
 
 const cursor = mongoClient
-  .db('mydb')
-  .collection('mycollection')
-  .aggregate([{ $limit: 10 }]);
+    .db('sample_airbnb')
+    .collection('listingsAndReviews')
+    .aggregate([{ $limit: 10 }, { $project: { listing_url: 1 } }]);
 
 analyzeSchema(cursor)
-  .then((schema) => schema.getMongoDBJsonSchema())
-  .then((jsonSchema) => {
-    console.log(jsonSchema);
-  })
-  .catch((err) => {
-    console.error(err);
-  })
-  .finally(() => {
-    mongoClient.close();
-    process.exit(0);
-  });
+    .then((schema) => schema.getMongoDBJsonSchema())
+    .then((jsonSchema) => {
+        console.log('schema', jsonSchema);
+    })
+    .catch((err) => {
+        console.error(err);
+    })
+    .finally(() => {
+        mongoClient.close();
+        process.exit(0);
+    });
 ```
