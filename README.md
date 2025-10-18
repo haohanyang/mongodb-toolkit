@@ -20,9 +20,7 @@ npm install mongodb-toolkit
 ### Exporting Data to CSV
 
 ```javascript
-const { createWriteStream } = require('fs');
-const { MongoClient } = require('mongodb');
-const { exportCSV } = require('mongodb-toolkit');
+const { exportCSV, importCSV } = require('mongodb-toolkit');
 
 const mongoClient = new MongoClient('mongodb://localhost:27017');
 
@@ -31,7 +29,7 @@ const cursor = mongoClient
   .collection('mycollection')
   .aggregate([{ $limit: 10 }]);
 
-exportCSV(cursor, createWriteStream('output.csv'), {
+exportCSV(cursor, fs.createWriteStream('output.csv'), {
   delimiter: ';',
   progressCallback: (idx, phase) => {
     console.log(phase, idx);
@@ -49,16 +47,13 @@ exportCSV(cursor, createWriteStream('output.csv'), {
 ### Importing CSV Data
 
 ```javascript
-const path = require('path');
-const { createReadStream } = require('fs');
-const { MongoClient } = require('mongodb');
-const { exportCSV } = require('mongodb-toolkit');
+const { importCSV } = require('mongodb-toolkit');
 
 const mongoClient = new MongoClient('mongodb://localhost:27017');
 
 const coll = mongoClient.db('mydb').collection('mycollection');
 
-importCSV(coll, createReadStream('example.csv'), {
+importCSV(coll, fs.createReadStream('example.csv'), {
   fields: { id: 'int', name: 'string' },
 })
   .then((result) => {
@@ -76,7 +71,6 @@ importCSV(coll, createReadStream('example.csv'), {
 ### Analyzing Schema
 
 ```javascript
-const { MongoClient } = require('mongodb');
 const { analyzeSchema } = require('mongodb-toolkit');
 
 const mongoClient = new MongoClient('mongodb://localhost:27017');

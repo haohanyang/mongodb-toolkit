@@ -11,3 +11,4 @@ node_modules
 bootstrap.sh
 package-lock.json
 rollup.config.js
+*.tgz
