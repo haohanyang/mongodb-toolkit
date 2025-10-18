@@ -1,0 +1,74 @@
+# MongoDB Toolkit
+
+MongoDB Toolkit is a utility library extracted from [MongoDB Compass](https://github.com/mongodb-js/compass) for exporting data, analyzing schemas, and more.
+
+## Features
+
+- **Export Data**: Export MongoDB data to CSV or JSON formats.
+- **Schema Analysis**: Analyze MongoDB collections to generate schema definitions.
+
+## Installation
+
+To install MongoDB Toolkit, use npm:
+
+```bash
+npm install mongodb-toolkit
+```
+
+## Usage
+
+### Exporting Data to CSV
+
+```javascript
+const { createWriteStream } = require('fs');
+const { MongoClient } = require('mongodb');
+const { exportCSV } = require('mongodb-toolkit');
+
+const mongoClient = new MongoClient('mongodb://localhost:27017');
+
+const cursor = mongoClient
+  .db('mydb')
+  .collection('mycollection')
+  .aggregate([{ $limit: 10 }]);
+
+exportCSV(cursor, createWriteStream('output.csv'), {
+  delimiter: ';',
+  progressCallback: (idx, phase) => {
+    console.log(phase, idx);
+  },
+})
+  .catch((err) => {
+    console.error(err);
+  })
+  .finally(() => {
+    mongoClient.close();
+    process.exit(0);
+  });
+```
+
+### Analyzing Schema
+
+```javascript
+const { MongoClient } = require('mongodb');
+const { analyzeSchema } = require('mongodb-toolkit');
+
+const mongoClient = new MongoClient('mongodb://localhost:27017');
+
+const cursor = mongoClient
+  .db('mydb')
+  .collection('mycollection')
+  .aggregate([{ $limit: 10 }]);
+
+analyzeSchema(cursor)
+  .then((schema) => schema.getMongoDBJsonSchema())
+  .then((jsonSchema) => {
+    console.log(jsonSchema);
+  })
+  .catch((err) => {
+    console.error(err);
+  })
+  .finally(() => {
+    mongoClient.close();
+    process.exit(0);
+  });
+```
