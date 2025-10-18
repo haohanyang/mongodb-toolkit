@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
-    "compile": "rollup -c",
+    "build-lib": "rollup -c",
     "format": "prettier --write \"*.js\" \"src/**/*.js\" \"vendors/**/*.ts\" \"src/**/*.ts\""
   },
   "author": "Haohan Yang",
@@ -25,6 +25,7 @@
   "dependencies": {
     "bson": "^6.10.4",
     "lodash": "^4.17.21",
-    "stream-json": "^1.7.5"
+    "stream-json": "^1.7.5",
+    "mongodb-schema": "^12.6.3"
   }
 }

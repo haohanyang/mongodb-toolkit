@@ -9,6 +9,8 @@ const options = {
       './compass/packages/compass-import-export/src/export/export-csv.ts',
     'export-json':
       './compass/packages/compass-import-export/src/export/export-json.ts',
+    'schema-analysis':
+      './compass/packages/compass-schema/src/modules/schema-analysis.ts',
   },
   output: {
     dir: path.resolve(__dirname, 'lib'),
@@ -22,6 +24,7 @@ const options = {
     'stream-json/Parser',
     'stream-json/streamers/StreamValues',
     'mongodb/lib/utils',
+    'mongodb-schema',
   ],
   plugins: [
     typescript({
