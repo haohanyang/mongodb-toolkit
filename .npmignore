@@ -1,6 +1,8 @@
+.github
 .vscode
 compass
 examples
+vendors
 node_modules
 .env
 .gitignore
