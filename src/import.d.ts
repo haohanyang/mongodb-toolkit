@@ -7,6 +7,8 @@ declare const supportedLinebreaks: readonly ['\r\n', '\n'];
 type Delimiter = (typeof supportedDelimiters)[number];
 type Linebreak = (typeof supportedLinebreaks)[number];
 
+type JSONVariant = 'json' | 'jsonl';
+
 type ImportProgress = {
   bytesProcessed: number;
   docsProcessed: number;
@@ -69,6 +71,10 @@ type ImportCSVOptions = ImportOptions & {
   fields?: IncludedFields;
 };
 
+type ImportJSONOptions = ImportOptions & {
+  jsonVariant?: JSONVariant;
+};
+
 type ImportResult = {
   aborted?: boolean;
   docsWritten: number;
@@ -88,4 +94,10 @@ export function importCSV(
   collection: Collection<Document>,
   input: Readable,
   options: ImportCSVOptions,
+): Promise<ImportResult>;
+
+export function importJSON(
+  collection: Collection<Document>,
+  input: Readable,
+  options?: ImportJSONOptions,
 ): Promise<ImportResult>;

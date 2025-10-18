@@ -1,5 +1,5 @@
 const { exportCSV, exportJSON } = require('./export');
-const { importCSVFromFile, importCSV } = require('./import');
+const { importCSVFromFile, importCSV, importJSON } = require('./import');
 const { analyzeSchema } = require('./schema-analysis');
 
 module.exports = {
@@ -7,5 +7,6 @@ module.exports = {
   exportJSON,
   importCSV,
   importCSVFromFile,
+  importJSON,
   analyzeSchema,
 };

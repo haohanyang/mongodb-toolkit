@@ -1,5 +1,6 @@
 const { createReadStream } = require('fs');
 const importCSVLibs = require('../lib/import-csv');
+const importJSONLibs = require('../lib/import-json');
 const { guessFileType } = require('../lib/guess-filetype');
 const { analyzeCSVFields } = require('../lib/analyze-csv-fields');
 
@@ -73,15 +74,17 @@ async function importCSV(collection, input, options) {
   });
 }
 
-// async function importJSON(collection, input, options) {
-//   importJSONLibs.importJSON({
-//     ...options,
-//     dataService: new ImportDataService(collection),
-//     ns: collection.namespace,
-//   });
-// }
+function importJSON(collection, input, options = {}) {
+  return importJSONLibs.importJSON({
+    ...options,
+    input,
+    dataService: new ImportDataService(collection),
+    ns: collection.namespace,
+  });
+}
 
 module.exports = {
   importCSVFromFile,
   importCSV,
+  importJSON,
 };
