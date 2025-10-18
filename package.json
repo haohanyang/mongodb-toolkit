@@ -1,9 +1,17 @@
 {
   "name": "mongodb-toolkit",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha.1",
   "description": "MongoDB Toolkit",
   "main": "src/index.js",
   "types": "src/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haohanyang/mongodb-toolkit.git"
+  },
+  "homepage": "https://github.com/haohanyang/mongodb-toolkit#readme",
+  "bugs": {
+    "url": "https://github.com/haohanyang/mongodb-toolkit/issues"
+  },
   "scripts": {
     "build-lib": "rollup -c",
     "format": "prettier --write \"*.js\" \"src/**/*.js\" \"vendors/**/*.ts\" \"src/**/*.ts\""
