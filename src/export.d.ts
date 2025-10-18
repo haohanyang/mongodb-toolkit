@@ -30,11 +30,24 @@ type ExportResult = {
   aborted: boolean;
 };
 
+/**
+ * Exports data from MongoDB to a CSV format and writes it to the provided writable stream.
+ * @param cursor MongoDB cursor from aggregation or query operation.
+ * @param output Writable stream to write the CSV data to.
+ * @param options
+ */
 export function exportCSV(
   cursor: AggregationCursor | FindCursor,
   output: Writable,
   options?: ExportCSVOptions,
 ): Promise<ExportResult>;
+
+/**
+ * Exports data from MongoDB to a JSON format and writes it to the provided writable stream.
+ * @param cursor MongoDB cursor from aggregation or query operation.
+ * @param output Writable stream to write the JSON data to.
+ * @param options
+ */
 export function exportJSON(
   cursor: AggregationCursor | FindCursor,
   output: Writable,

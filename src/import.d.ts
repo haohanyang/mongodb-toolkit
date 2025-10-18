@@ -84,18 +84,36 @@ type ImportResult = {
   hasUnboundArray: boolean;
 };
 
+/**
+ * Imports data from a CSV file into MongoDB. The function will analyze the CSV delimiter, linebreaks, and fields automatically if not provided in the options.
+ * @param collection MongoDB collection to import data into.
+ * @param filePath Path to the CSV file to import.
+ * @param options
+ */
 export function importCSVFromFile(
   collection: Collection<Document>,
   filePath: string,
   options?: ImportCSVOptions,
 ): Promise<ImportResult>;
 
+/**
+ * Imports data from a CSV stream into MongoDB. The user must provide `fields` in the options to specify the expected fields and their types.
+ * @param collection MongoDB collection to import data into.
+ * @param input Readable CSV stream.
+ * @param options
+ */
 export function importCSV(
   collection: Collection<Document>,
   input: Readable,
   options: ImportCSVOptions,
 ): Promise<ImportResult>;
 
+/**
+ * Imports data from a JSON stream into MongoDB.
+ * @param collection MongoDB collection to import data into.
+ * @param input Readable JSON stream.
+ * @param options
+ */
 export function importJSON(
   collection: Collection<Document>,
   input: Readable,
