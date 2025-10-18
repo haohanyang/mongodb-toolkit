@@ -1,10 +1,11 @@
 # MongoDB Toolkit
 
-MongoDB Toolkit is a utility library extracted from [MongoDB Compass](https://github.com/mongodb-js/compass) for exporting data, analyzing schemas, and more.
+MongoDB Toolkit is a utility library extracted from [MongoDB Compass](https://github.com/mongodb-js/compass) for exporting data, importing data, analyzing schemas, and more.
 
 ## Features
 
-- **Export Data**: Export MongoDB data to CSV or JSON formats.
+- **Export Data**: Export MongoDB data to CSV or JSON files/streams.
+- **Import Data**: Import data from CSV or JSON files/streams into MongoDB.
 - **Schema Analysis**: Analyze MongoDB collections to generate schema definitions.
 
 ## Installation
