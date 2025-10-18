@@ -1,4 +1,5 @@
 const exportCSVLibs = require('../lib/export-csv');
+const exportJSONLibs = require('../lib/export-json');
 
 class AggregateDataService {
   constructor(cursor) {
@@ -51,6 +52,15 @@ function exportCSV(cursor, output, options = {}) {
   throw new Error('Invalid cursor');
 }
 
+function exportJSON(cursor, output, options = {}) {
+  return exportJSONLibs.exportJSON({
+    ...options,
+    input: cursor,
+    output,
+  });
+}
+
 module.exports = {
   exportCSV,
+  exportJSON,
 };

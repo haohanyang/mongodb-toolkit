@@ -4,10 +4,16 @@ const alias = require('@rollup/plugin-alias');
 
 /** @type {import('rollup').RollupOptions} */
 const options = {
-  input: './compass/packages/compass-import-export/src/export/export-csv.ts',
+  input: {
+    'export-csv':
+      './compass/packages/compass-import-export/src/export/export-csv.ts',
+    'export-json':
+      './compass/packages/compass-import-export/src/export/export-json.ts',
+  },
   output: {
-    file: path.resolve(__dirname, 'lib/export-csv.js'),
+    dir: path.resolve(__dirname, 'lib'),
     format: 'cjs',
+    entryFileNames: '[name].js',
   },
   external: [
     ...require('module').builtinModules,
@@ -31,15 +37,19 @@ const options = {
       entries: [
         {
           find: 'compass-preferences-model/provider',
-          replacement: path.resolve(__dirname, 'src/preferences-provider'),
+          replacement: path.resolve(__dirname, 'vendors/preferences-provider'),
         },
         {
           find: 'debug',
-          replacement: path.resolve(__dirname, 'src/debug'),
+          replacement: path.resolve(__dirname, 'vendors/debug'),
         },
         {
           find: 'mongodb-ns',
-          replacement: path.resolve(__dirname, 'src/mongodb-ns'),
+          replacement: path.resolve(__dirname, 'vendors/mongodb-ns'),
+        },
+        {
+          find: 'hadron-document',
+          replacement: path.resolve(__dirname, 'vendors/hadron-document'),
         },
       ],
     }),

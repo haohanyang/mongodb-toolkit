@@ -1,3 +1,5 @@
+// packages/compass-preferences-model/src/maxtimems.ts
+
 export function capMaxTimeMSAtPreferenceLimit<T>(
   preferences: { getPreferences(): { maxTimeMS?: number } },
   value: T,

@@ -6,7 +6,7 @@
   "types": "src/index.d.ts",
   "scripts": {
     "compile": "rollup -c",
-    "format": "prettier --write \"*.js\" \"src/**/*.js\" \"src/**/*.ts\""
+    "format": "prettier --write \"*.js\" \"src/**/*.js\" \"vendors/**/*.ts\" \"src/**/*.ts\""
   },
   "author": "Haohan Yang",
   "license": "SSPL",
