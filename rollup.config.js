@@ -41,7 +41,8 @@ const options = {
   plugins: [
     typescript({
       compilerOptions: {
-        target: 'ES2015',
+        lib: ['ES2015'],
+        target: 'es2015',
       },
       include: ['./compass/packages/**/*.ts', './vendors/*.ts'],
       exclude: [
