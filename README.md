@@ -97,9 +97,20 @@ const cursor = mongoClient
   .collection('comments')
   .aggregate([{ $limit: 100 }]);
 
-analyzeSchema(cursor)
+const controller = new AbortController();
+
+// Abort the analysis after 1 second
+setTimeout(() => {
+  controller.abort();
+}, 1000);
+
+analyzeSchema(cursor, { abortSignal: controller.signal })
   .then((schema) => schema.getMongoDBJsonSchema())
   .then((jsonSchema) => {
+    if (!schema) {
+      // Aborted
+      throw new Error('Schema analysis aborted');
+    }
     console.log(JSON.stringify(jsonSchema, null, 2));
   })
   .catch((err) => {
