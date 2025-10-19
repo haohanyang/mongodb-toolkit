@@ -18,6 +18,8 @@ npm install mongodb-toolkit
 
 ## Usage
 
+Examples use [MongoDB Sample Datasets](https://www.mongodb.com/docs/atlas/sample-data/)
+
 ### Export Data to CSV
 
 ```ts
@@ -26,29 +28,38 @@ import { exportCSV } from 'mongodb-toolkit';
 const mongoClient = new MongoClient(process.env['MONGO_URI']!);
 
 const cursor = mongoClient
-    .db('sample_airbnb')
-    .collection('listingsAndReviews')
-    .aggregate([{ $limit: 10 }, { $project: { listing_url: 1 } }]);
+  .db('sample_airbnb')
+  .collection('listingsAndReviews')
+  .aggregate([{ $limit: 10 }, { $project: { listing_url: 1 } }]);
 
 exportCSV(cursor, fs.createWriteStream('output.csv'), {
-    delimiter: ';',
-    progressCallback: (idx, phase) => {
-        console.log(phase, idx);
-    },
+  delimiter: ';',
+  progressCallback: (idx, phase) => {
+    console.log(phase, idx);
+  },
 })
-    .then(result => {
-        console.log('Export result', result);
-    })
-    .catch((err) => {
-        console.error(err);
-    })
-    .finally(() => {
-        mongoClient.close();
-        process.exit(0);
-    });
+  .then((result) => {
+    console.log('Export result', result);
+  })
+  .catch((err) => {
+    console.error(err);
+  })
+  .finally(() => {
+    mongoClient.close();
+    process.exit(0);
+  });
 ```
 
 ### Import CSV File
+
+CSV content (import.csv):
+
+```csv
+id,name
+1,John
+2,Jane
+3,Doe
+```
 
 ```ts
 import { importCSV } from 'mongodb-toolkit';
@@ -57,27 +68,20 @@ const mongoClient = new MongoClient(process.env['MONGO_URI']!);
 
 const coll = mongoClient.db('mydb').collection('mycollection');
 
-/* import.csv content:
-id,name
-1,John
-2,Jane
-3,Doe
-*/
-
 importCSV(coll, fs.createReadStream('./import.csv'), {
-    fields: { id: 'int', name: 'string' },
-    delimiter: ',',
+  fields: { id: 'int', name: 'string' },
+  delimiter: ',',
 })
-    .then((result) => {
-        console.log('Import Result:', result);
-    })
-    .catch((err) => {
-        console.error(err);
-    })
-    .finally(() => {
-        mongoClient.close();
-        process.exit(0);
-    });
+  .then((result) => {
+    console.log('Import Result:', result);
+  })
+  .catch((err) => {
+    console.error(err);
+  })
+  .finally(() => {
+    mongoClient.close();
+    process.exit(0);
+  });
 ```
 
 ### Analyzing Schema
@@ -87,21 +91,58 @@ import { analyzeSchema } from 'mongodb-toolkit';
 
 const mongoClient = new MongoClient(process.env['MONGO_URI']!);
 
+// Sample 100 docs
 const cursor = mongoClient
-    .db('sample_airbnb')
-    .collection('listingsAndReviews')
-    .aggregate([{ $limit: 10 }, { $project: { listing_url: 1 } }]);
+  .db('sample_mflix')
+  .collection('comments')
+  .aggregate([{ $limit: 100 }]);
 
 analyzeSchema(cursor)
-    .then((schema) => schema.getMongoDBJsonSchema())
-    .then((jsonSchema) => {
-        console.log('schema', jsonSchema);
-    })
-    .catch((err) => {
-        console.error(err);
-    })
-    .finally(() => {
-        mongoClient.close();
-        process.exit(0);
-    });
+  .then((schema) => schema.getMongoDBJsonSchema())
+  .then((jsonSchema) => {
+    console.log(JSON.stringify(jsonSchema, null, 2));
+  })
+  .catch((err) => {
+    console.error(err);
+  })
+  .finally(() => {
+    mongoClient.close();
+    process.exit(0);
+  });
+```
+
+Output
+
+```
+{
+  "bsonType": "object",
+  "required": [
+    "_id",
+    "date",
+    "email",
+    "movie_id",
+    "name",
+    "text"
+  ],
+  "properties": {
+    "_id": {
+      "bsonType": "objectId"
+    },
+    "date": {
+      "bsonType": "date"
+    },
+    "email": {
+      "bsonType": "string"
+    },
+    "movie_id": {
+      "bsonType": "objectId"
+    },
+    "name": {
+      "bsonType": "string"
+    },
+    "text": {
+      "bsonType": "string"
+    }
+  }
+}
 ```
