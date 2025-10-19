@@ -1,6 +1,6 @@
 {
   "name": "mongodb-toolkit",
-  "version": "0.1.0-alpha.4",
+  "version": "0.1.0-beta.1",
   "description": "MongoDB utility functions for data import/export and schema analysis",
   "main": "src/index.js",
   "types": "src/index.d.ts",
