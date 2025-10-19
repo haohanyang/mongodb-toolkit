@@ -4,3 +4,4 @@ compass/
 .env
 *.tgz
 dist/
+examples-out/

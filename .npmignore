@@ -13,3 +13,4 @@ package-lock.json
 rollup.config.js
 .editorconfig
 *.tgz
+examples-out

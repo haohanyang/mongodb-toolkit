@@ -23,7 +23,7 @@ const options = {
       './compass/packages/compass-import-export/src/import/guess-filetype.ts',
   },
   output: {
-    dir: path.resolve(__dirname, 'lib'),
+    dir: './lib',
     format: 'cjs',
     entryFileNames: '[name].js',
   },
@@ -40,6 +40,7 @@ const options = {
   ],
   plugins: [
     typescript({
+      tsconfig: false,
       compilerOptions: {
         lib: ['ES2015'],
         target: 'es2015',

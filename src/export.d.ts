@@ -17,7 +17,7 @@ type ExportCSVOptions = {
 type ExportJSONOptions = {
   abortSignal?: AbortSignal;
   progressCallback?: (index: number) => void;
-  variant: ExportJSONFormat;
+  variant?: ExportJSONFormat;
 };
 
 type ExportResult = {
