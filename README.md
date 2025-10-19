@@ -1,6 +1,6 @@
 # MongoDB Toolkit
 
-MongoDB Toolkit is a utility library extracted from [MongoDB Compass](https://github.com/mongodb-js/compass) for exporting data, importing data, analyzing schemas, and more.
+MongoDB Toolkit is a utility library that wraps utilities from [MongoDB Compass](https://github.com/mongodb-js/compass) for exporting data, importing data, analyzing schemas, and more.
 
 ## Features
 
@@ -124,17 +124,10 @@ analyzeSchema(cursor, { abortSignal: controller.signal })
 
 Output
 
-```
+```json
 {
   "bsonType": "object",
-  "required": [
-    "_id",
-    "date",
-    "email",
-    "movie_id",
-    "name",
-    "text"
-  ],
+  "required": ["_id", "date", "email", "movie_id", "name", "text"],
   "properties": {
     "_id": {
       "bsonType": "objectId"
