@@ -1,3 +1,5 @@
+'use strict';
+
 const exportCSVLibs = require('../lib/export-csv');
 const exportJSONLibs = require('../lib/export-json');
 

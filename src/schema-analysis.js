@@ -1,3 +1,5 @@
+'use strict';
+
 const schemaAnalysisLib = require('../lib/schema-analysis');
 
 class SampleDataService {

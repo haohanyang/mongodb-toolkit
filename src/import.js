@@ -1,3 +1,5 @@
+'use strict';
+
 const { createReadStream } = require('fs');
 const importCSVLibs = require('../lib/import-csv');
 const importJSONLibs = require('../lib/import-json');

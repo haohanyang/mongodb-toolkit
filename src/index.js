@@ -1,3 +1,5 @@
+'use strict';
+
 const { exportCSV, exportJSON } = require('./export');
 const { importCSVFromFile, importCSV, importJSON } = require('./import');
 const { analyzeSchema } = require('./schema-analysis');
