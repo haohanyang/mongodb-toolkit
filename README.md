@@ -16,6 +16,12 @@ To install MongoDB Toolkit, use npm:
 npm install mongodb-toolkit
 ```
 
+To use the library with typescript, either set `"skipLibCheck": false` in your `tsconfig.json` or install type definitions:
+
+```
+npm i @types/json-schema @types/reservoir -D
+```
+
 ## Usage
 
 Examples use [MongoDB Sample Datasets](https://www.mongodb.com/docs/atlas/sample-data/)
