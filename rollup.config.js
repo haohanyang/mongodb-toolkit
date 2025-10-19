@@ -32,7 +32,7 @@ const options = {
     'bson',
     'lodash',
     'stream-json',
-    new RegExp('stream-json/.*'),
+    new RegExp('stream-json/.+'),
     'mongodb/lib/utils',
     'mongodb-schema',
     'papaparse',
@@ -43,6 +43,7 @@ const options = {
       compilerOptions: {
         lib: ['ES2015'],
         target: 'es2015',
+        removeComments: true,
       },
       include: ['./compass/packages/**/*.ts', './vendors/*.ts'],
       exclude: [

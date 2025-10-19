@@ -3,3 +3,4 @@ lib/
 compass/
 .env
 *.tgz
+dist/
