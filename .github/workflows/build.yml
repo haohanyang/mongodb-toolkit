@@ -1,12 +1,15 @@
 name: Build
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - '*'
     paths:
       - '**/*.js'
       - '**/*.ts'
+      - '.github/workflows/*.yml'
+      - 'package.json'
 
 jobs:
   build:
