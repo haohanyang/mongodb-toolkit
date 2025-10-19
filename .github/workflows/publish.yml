@@ -34,7 +34,7 @@ jobs:
       - name: Build dependencies
         run: npm run build-lib:production
       - name: Publish to npm
-        run: npm publish --tag ${{ github.event.inputs.tag }}
+        run: npm publish --tag ${{ github.event.inputs.tag }} --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Create and push git tag
