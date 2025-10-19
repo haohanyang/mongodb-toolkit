@@ -14,3 +14,5 @@ rollup.config.js
 .editorconfig
 *.tgz
 examples-out
+tsconfig-examples.json
+CHANGELOG

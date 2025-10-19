@@ -90,7 +90,7 @@ importCSV(coll, fs.createReadStream('./import.csv'), {
   });
 ```
 
-### Analyzing Schema
+### Analyze Schema
 
 ```ts
 import { analyzeSchema } from 'mongodb-toolkit';

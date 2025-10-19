@@ -1,0 +1,10 @@
+# Changelog
+
+## [0.1.0] - 2025-10-19
+
+### Added
+
+- Initial release of MongoDB Toolkit.
+- Export data to CSV and JSON.
+- Import data from CSV and JSON.
+- Analyze MongoDB schemas.
