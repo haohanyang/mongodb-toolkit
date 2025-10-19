@@ -1,11 +1,6 @@
 import { Writable, Readable } from 'stream';
 import { Collection, Document } from 'mongodb';
-
-declare const supportedDelimiters: readonly [',', '\t', ';', ' '];
-declare const supportedLinebreaks: readonly ['\r\n', '\n'];
-
-type Delimiter = (typeof supportedDelimiters)[number];
-type Linebreak = (typeof supportedLinebreaks)[number];
+import { Delimiter, Linebreak } from './common';
 
 type JSONVariant = 'json' | 'jsonl';
 
