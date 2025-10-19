@@ -86,7 +86,7 @@ type ImportResult = {
  * @param options
  */
 export function importCSVFromFile(
-  collection: Collection<Document>,
+  collection: Collection,
   filePath: string,
   options?: ImportCSVOptions,
 ): Promise<ImportResult>;

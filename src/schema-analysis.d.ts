@@ -11,6 +11,6 @@ type AnalyzeSchemaOptions = {
  * @param options
  */
 export function analyzeSchema(
-  cursor: AggregationCursor<Document>,
+  cursor: AggregationCursor,
   options?: AnalyzeSchemaOptions,
 ): Promise<SchemaAccessor>;
